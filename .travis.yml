@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t ericabertolozzi/node .
   - docker images ericabertolozzi/node
+
+before_deploy:
+  - docker login -u ericabertolozzi -p Docker2022
+
+deploy:
+  provider: script 
+  script: docker push ericabertolozzi/node
+  on:
+    branch: master
